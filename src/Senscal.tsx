@@ -96,7 +96,7 @@ return (
 <div className='flex flex-col items-center justify-center mx-auto my-10 overflow-auto transition-all ease-in-out duration-200'>
   <h1 className='text-transparent font-bold mb-10 text-3xl subpixel-antialiased bg-linear-to-b bg-clip-text from-[#393E46] to-[#222831] 
   flex flex-col gap-3 items-center'>Sensitivity Converter <BiMouse className=' text-blue-400 h-7 w-7'></BiMouse></h1>
-  <p className='mb-5 text-base sm:text-xl'>Use this Calculator / Coverter to convert your sensitivites from your favourite shooters.</p>
+  <p className='mb-5 text-base sm:text-xl'>Use this Calculator / Converter to convert your sensitivites from your favourite shooters.</p>
   
 <div className='p-5 rounded-2xl w-full max-w-3xl border-2 border-gray-900'>
 <div className="flex flex-col md:items-start md:flex-row justify-center items-center gap-10 text-white p-10">
@@ -198,6 +198,7 @@ onChange={(e) => handleSens('fdpi', e.target.value, field.game1, field.game2)} v
 </div>
 
 </>)
+
 
 
 
