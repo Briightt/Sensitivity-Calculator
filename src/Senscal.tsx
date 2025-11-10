@@ -47,7 +47,6 @@ setField(prev => ({...prev, [field]: value}))
 
 const handleSens = (category: string | number , value: number | string, gameName:string, fieldGame2:string) => {
 if(value === '') {
-setEmptyFields(prev => ({...prev, [category]:true }))
 setSens(prev => ({ ...prev, [category]: '' }));
 setFinalSens(0)
 return;
@@ -88,6 +87,12 @@ const Reset = () => {
   setField(prev => ({...prev, game1: '', game2:''}))
   setEmptyFields(prev => ({...prev, sens:false, fdpi:false,tdpi:false}))
   setFinalSens(0)
+}
+
+const InputBlur = (category:string, value:string) => {
+if(value === '')
+  setEmptyFields(prev => ({...prev, [category]:true }))
+
 }
 
 
@@ -162,7 +167,7 @@ return (
 <div className='relative'>
 <label className='absolute left-3 text-[0.9rem] text-gray-400  font-bold p-1' >Sensitivity</label>
 
-<input type = 'number'  value={sens.sens} ref = {inputRef.sens}
+<input type = 'number'  value={sens.sens} ref = {inputRef.sens} onBlur ={(e) => InputBlur('sens', e.target.value)}
  className={`bg-linear-to-tr from-[#FEFCF3] to-[#F5EBE0]  rounded-2xl p-4 mt-1 w-70 h-15 text-[1.1rem] font-semibold text-gray-700
   ${emptyFields.sens && 'border-red-700 border'} appearance-none focus:outline-1 outline-blue-500 focus:ring-2 ring focus:ring-blue-500`}
  onChange={(e) => handleSens('sens', e.target.value, field.game1, field.game2)}></input>
@@ -173,14 +178,14 @@ return (
 <label className='absolute left-3 text-[0.9rem] text-gray-400 font-bold p-1'>From DPI</label>
 <input type = 'number' 
  className={`bg-linear-to-tr from-[#FEFCF3] to-[#F5EBE0]  rounded-2xl p-4 mt-1 text-gray-700 w-35 h-15 font-semibold text-[1.1rem]  ${emptyFields.fdpi && 'border-red-700 border'} appearance-none focus:outline-1 outline-blue-500 focus:ring-2 ring focus:ring-blue-500`} 
-onChange={(e) => handleSens('fdpi', e.target.value, field.game1, field.game2)} value = {sens.fdpi} ref = {inputRef.fDpi} ></input>
+onChange={(e) => handleSens('fdpi', e.target.value, field.game1, field.game2)} value = {sens.fdpi} ref = {inputRef.fDpi} onBlur ={(e) => InputBlur('fdpi', e.target.value)} ></input>
  {emptyFields.fdpi && <BiErrorCircle className='absolute right-2 top-6.5 text-red-700 text-[1.1rem]'></BiErrorCircle>}
 </div>
 <div className='relative'>
 <label className='absolute left-3 text-[0.9rem] text-gray-400 font-bold p-1'>To DPI</label>
 <input type = 'number'
  className={`bg-linear-to-tr from-[#FEFCF3] to-[#F5EBE0] rounded-2xl p-4 mt-1 text-gray-700 w-35 h-15 font-semibold text-[1.1rem] ${emptyFields.tdpi && 'border-red-700 border'} appearance-none focus:outline-1 outline-blue-500 focus:ring-2 ring focus:ring-blue-500`} 
- onChange={(e) => handleSens('tdpi', e.target.value, field.game1, field.game2)} value = {sens.tdpi} ref = {inputRef.tDpi} ></input>
+ onChange={(e) => handleSens('tdpi', e.target.value, field.game1, field.game2)} value = {sens.tdpi} ref = {inputRef.tDpi} onBlur ={(e) => InputBlur('tdpi', e.target.value)} ></input>
   {emptyFields.tdpi && <BiErrorCircle className='absolute right-2 top-6.5 text-red-700 '></BiErrorCircle>}
 </div>
 </div>
@@ -206,3 +211,4 @@ onChange={(e) => handleSens('fdpi', e.target.value, field.game1, field.game2)} v
 
 
 }
+
